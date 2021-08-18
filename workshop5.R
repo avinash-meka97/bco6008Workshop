@@ -40,3 +40,52 @@ final_model<-
 
 
 
+
+rm(list = ls())
+
+data("Boston")
+
+#1
+model_spec<-
+  linear_reg()%>%
+  set_mode("regression")%>%
+  set_engine("lm")
+
+#2
+model_fit<-
+  model_spec%>%
+  fit(data=Boston, medv~age+crim+rm)
+
+#3
+model_predicted<-
+  predict(model_fit, new_data = Boston)
+
+model_predicted_augment<-
+  augment(model_fit, new_data = Boston)
+
+
+
+
+
+rm(list = ls())
+
+data("Boston")
+
+#1
+model_lm_spec<-
+  linear_reg()%>%
+  set_mode("regression")%>%
+  set_engine("lm")
+
+#2  
+model_lm_fit<-
+  model_lm_spec%>%
+  fit(data=Boston, medv~.)
+
+#3
+model_lm_augm<-
+  augment(model_lm_fit, new_data = Boston)
+
+
+
+
